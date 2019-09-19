@@ -2,9 +2,27 @@
 #include <array>
 
 template<std::size_t N>
+int partition( std::array<int,N>& array , int left , int right , int pivot )
+{
+    while( left <= right ) {
+        while(array[left] < pivot ) {
+            left++;
+        }
+        while(array[right] > pivot ) {
+            right--;
+        }
+        if(left <= right) {
+            std::swap(array[left],array[right]);
+            left++;
+            right--;
+        }
+    }
+    return left;
+}
+
+template<std::size_t N>
 void quicksort( std::array<int,N>& array , int left , int right ) {
     if( left >= right) {
-        std::cout << "left >= right\n";
         return;
     }
     int pivot = array[(left + right) / 2  ];
@@ -21,9 +39,13 @@ void quicksort( std::array<int,N>& array ) {
 
 int main( void ) 
 {
-    std::array<int,5> array = {{ 12 , 5 , 99 , 9 , 5 }};
+    std::array<int,5> array = {{ 12 , 5 , 99 , 9 , 5 }}; // double braces bc of std::initializer_list shenanighans
 
     quicksort( array );
+
+    for( auto const& i : array ) {
+        std::cout << i << "\n";
+    }
 
     return 0;
 }

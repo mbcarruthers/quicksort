@@ -33,7 +33,7 @@ void quicksort( std::array<int,N>& array , int left , int right ) {
 
 template<std::size_t N>
 void quicksort( std::array<int,N>& array ) {
-    if ( array.empty() ) // cannot be if constexpr because it is being passed by reference?? figure it out
+    if ( array.empty() ) 
         return;
     }
     quicksort(array,0,array.size() - 1);
